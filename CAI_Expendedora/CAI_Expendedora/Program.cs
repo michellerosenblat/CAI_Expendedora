@@ -18,16 +18,16 @@ namespace CAI_Expendedora
 
             switch (opcionmenu)
             {
-                case 1:
+                case 0:
                     //Encender maquina
                     miexpendedora.EncenderMaquina();
                     Console.WriteLine(miexpendedora.Encendida ());
                     break;
-                case 2:
+                case 1:
                     //Listado de Latas disponibles
                     ListarLatas(miexpendedora);
                     break;
-                case 3:
+                case 2:
                     ListarLatas(miexpendedora);
                     Console.WriteLine("Ingrese un codigo");
                     codigo = Console.ReadLine();
@@ -45,16 +45,23 @@ namespace CAI_Expendedora
                     }
                     catch (CapacidadInsuficienteException e)
                     {
-                        Console.WriteLine
+                        Console.WriteLine(e.Message);
                     }
-                    catch (Exception e)
+                    catch (CodigoInvalidoException e)
                     {
                         Console.WriteLine(e.Message);
                     }
                     
                     break;
+                case 3:
+                    Console.WriteLine("Seleccione el código de la lata a extraer");
+                    ListarLatas(miexpendedora);
+                    Console.ReadLine ()
+
+                    break;
                 default:
                     Console.WriteLine("Default case");
+
                     break;
             }
 
