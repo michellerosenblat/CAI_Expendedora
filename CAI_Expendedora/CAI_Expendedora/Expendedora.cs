@@ -17,7 +17,9 @@ namespace CAI_Expendedora
         public Expendedora()
         {
             encendida = false;
-            capacidad = 10;
+            capacidad = 1;
+            latas = new List<Lata>();
+            dinero = 0;
         }
         public string Encendida()
         {
@@ -32,9 +34,7 @@ namespace CAI_Expendedora
         }
         public void AgregarLata(Lata lata)
         {
-            try
-            {
-                if (this.encendida && GetCapacidadRestante() >= 1)
+                if (this.encendida && GetCapacidadRestante()>0)
                 {
                     latas.Add(lata);
                 }
@@ -42,38 +42,71 @@ namespace CAI_Expendedora
                 {
                     throw new Exception("Se debe encender la maquina primero");
                 }
-            }
-            catch (CapacidadInsuficienteException e)
+                else  
+                {
+                    throw new CapacidadInsuficienteException();
+                }
+
+        }
+        public Lata ExtraerLata(CodigoLata codigoLata, double dineroIngresado)
+        {
+            if (HayStockDe(codigoLata))
             {
-                //no se si hace falta capturar la excepcion aca o dejar que lo haga el program
-                throw new CapacidadInsuficienteException(e.Message);
-            }
-            
-            
+                Lata lataAEliminar = latas.Find(lata => lata.Codigo.Equals(codigoLata));
+                if (AlcanzaDineroPara(lataAEliminar, dineroIngresado)) {
+                    latas.Remove(lataAEliminar);
+                    IngresarDinero(lataAEliminar.Precio);
+                    return lataAEliminar;
+                }
+                else
+                {
+                    throw new DineroInsuficienteException(lataAEliminar, dineroIngresado);
+                }
+            }else
+                throw new SinStockException ();
         }
-        public Lata ExtraerLata(string codigo, double dineroingresado)
-        {
+        /* public string GetBalance()
+ {
 
+ }*/
+        public bool AlcanzaDineroPara (Lata lata, double dineroIngresado)
+        {
+            return lata.Precio <= dineroIngresado;
         }
-        public string GetBalance()
+        public void IngresarDinero (double dineroAIngresar)
         {
-
+            dinero += dineroAIngresar;
+        }
+        public bool HayStockDe (CodigoLata codigoLata)
+        {
+            return latas.Any(lata => lata.Codigo.Equals (codigoLata));
         }
         public int GetCapacidadRestante()
         {
-            if (capacidad - latas.Count()>= 1)
-            {
-                return capacidad - latas.Count();
-            }
-            else
-            {
-                throw new CapacidadInsuficienteException("No hay capacidad suficiente");
-            }
-
+            return capacidad - latas.Count();
         }
         public string[] GetLatas()
         {
             return new string [6]{ "CO1 - Coca Cola Regular", "CO2 - Coca Cola Zero", "SP1 - Sprite Regular", "SP2 - Sprite Zero", "FA1 - Fanta Regular", "FA2 - Fanta Zero"};
+        }
+        public int CantidadLatas()
+        {
+            return latas.Count();
+        }
+        public double Dinero {
+            get
+            {
+                return dinero;
+            }
+        }
+        public string DevuelveStock()
+        {
+            string stock="";
+            foreach (Lata lata in latas)
+            {
+                stock += lata.Codigo + " $ " + + lata.Precio + " $/L " + (lata.Precio/lata.Volumen) +'\n';
+            }
+            return stock;
         }
     }
 }

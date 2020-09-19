@@ -8,6 +8,6 @@ namespace CAI_Expendedora
 {
     class CapacidadInsuficienteException : Exception
     {
-        public CapacidadInsuficienteException(string mensaje) : base(mensaje) { }
+        public CapacidadInsuficienteException() : base("No hay capacidad suficiente") { }
     }
 }

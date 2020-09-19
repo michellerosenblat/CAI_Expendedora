@@ -22,7 +22,7 @@ namespace CAI_Expendedora
         static public string MarcaDe(string codigo)
         {
 
-            switch (codigo.First ())
+            switch (codigo.ToUpper().First ())
             {
                 case 'C':
                     return "Coca Cola";
@@ -31,7 +31,7 @@ namespace CAI_Expendedora
                 case 'S':
                     return "Sprite";
                 default:
-                    throw new CodigoInvalidoException("El codigo no es valido");
+                    throw new CodigoInvalidoException();
             }
 
         }
@@ -44,8 +44,16 @@ namespace CAI_Expendedora
                 case '2':
                     return "Zero";
                 default:
-                   throw new Exception("El codigo no es valido");
+                    throw new CodigoInvalidoException();
             }
         }
+        public override bool Equals(object obj)
+        {
+            return (obj != null && obj is CodigoLata && this.codigo == ((CodigoLata)obj).codigo);
+        }
+        public override string ToString() {
+            return codigo.ToString() + " - " + marca + " " + sabor;
+        }
+
     }
 }

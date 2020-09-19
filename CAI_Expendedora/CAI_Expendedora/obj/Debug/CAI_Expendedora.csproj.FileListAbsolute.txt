@@ -1,0 +1,7 @@
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\obj\Debug\CAI_Expendedora.csprojAssemblyReference.cache
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\obj\Debug\CAI_Expendedora.csproj.CoreCompileInputs.cache
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\bin\Debug\CAI_Expendedora.exe.config
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\bin\Debug\CAI_Expendedora.exe
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\bin\Debug\CAI_Expendedora.pdb
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\obj\Debug\CAI_Expendedora.exe
+C:\Users\Michu\Documents\GitHub\CAI_Expendedora\CAI_Expendedora\CAI_Expendedora\obj\Debug\CAI_Expendedora.pdb

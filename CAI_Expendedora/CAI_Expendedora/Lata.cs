@@ -12,18 +12,37 @@ namespace CAI_Expendedora
         double volumen;
         CodigoLata codigo;
 
-        public Lata (string codigo, double precio, double volumen)
+        public Lata(string codigo, double precio, double volumen)
         {
-            try {
-                this.codigo = new CodigoLata(codigo);
-            }
-            catch (CodigoInvalidoException e)
-            {
-                throw new CodigoInvalidoException(e.Message);
-            }
-            
+            this.codigo = new CodigoLata(codigo);
             this.precio = precio;
             this.volumen = volumen;
+        }
+        public Lata(CodigoLata codigoLata, double precio, double volumen)
+        {
+            this.codigo = codigoLata;
+            this.precio = precio;
+            this.volumen = volumen;
+        }
+        public CodigoLata Codigo
+        {
+            get {
+            return this.codigo;
+            }
+        }
+        public double Precio
+        {
+            get
+            {
+                return this.precio;
+            }
+        }
+        public double Volumen
+        {
+            get
+            {
+                return this.volumen;
+            }
         }
     }
 }

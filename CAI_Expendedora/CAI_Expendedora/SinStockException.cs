@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CAI_Expendedora
 {
-    class CodigoInvalidoException : Exception
+    class SinStockException : Exception
     {
-        public CodigoInvalidoException () : base ("El código no es válido"){}
+        public SinStockException () : base ("No hay stock suficiente") { }
     }
 }
