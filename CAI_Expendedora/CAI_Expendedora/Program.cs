@@ -16,10 +16,9 @@ namespace CAI_Expendedora
             double volumen;
             CodigoLata codigoLata;
             MostrarEstadoDe(expendedora);
-            while (true)
+            while (opcionMenu !=6)
             {
-                Console.WriteLine("Ingrese la opcion de menu");
-                int.TryParse(Console.ReadLine(), out opcionMenu);
+                opcionMenu = PedirOpcionMenu();
                 switch (opcionMenu)
                 {
                     case 0:
@@ -42,25 +41,27 @@ namespace CAI_Expendedora
                             Console.WriteLine("Lata agregada exitosamente");
                         }
                         catch (CapacidadInsuficienteException ex)
-                        { 
-                                Console.WriteLine(ex.Message);
+                        {
+                            Console.WriteLine(ex.Message);
                         }
                         break;
                     case 3:
                         expendedora.EncenderMaquina();
-                        if (expendedora.GetCapacidadRestante() > 0) {
+                        if (expendedora.GetCapacidadRestante() > 0)
+                        {
                             expendedora.AgregarLata(new Lata("CO1", 5, 500));
                         }
-                        
+
                         ListarLatas(expendedora);
-                        try {
+                        try
+                        {
                             expendedora.ExtraerLata(PedirCodigoLata(), PedirNumero("Ingrese el dinero"));
                         }
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
-                        
+
                         break;
                     case 4:
                         expendedora.EncenderMaquina();
@@ -68,16 +69,33 @@ namespace CAI_Expendedora
                         break;
                     case 5:
                         expendedora.EncenderMaquina();
-                        Console.WriteLine (expendedora.DevuelveStock());
+                        Console.WriteLine(expendedora.DevuelveStock());
                         break;
                     default:
-                        Console.WriteLine("Default case");
-
                         break;
                 }
                 MostrarEstadoDe(expendedora);
             }
         }
+
+        private static int PedirOpcionMenu()
+        {
+            int opcionMenu;
+            do
+            {
+                Console.WriteLine("Ingrese la opcion de menú que desee:");
+                Console.WriteLine("Opción 0: Encender máquina");
+                Console.WriteLine("Opción 1: Listado de latas disponibles");
+                Console.WriteLine("Opción 2: Insertar una lata");
+                Console.WriteLine("Opción 3: Extraer Lata");
+                Console.WriteLine("Opción 4: Obtener Balance");
+                Console.WriteLine("Opción 5: Stock Disponible");
+                Console.WriteLine("Opcion 6: Salir");
+            }
+            while (!int.TryParse(Console.ReadLine(), out opcionMenu));
+            return opcionMenu;
+        }
+
         private static double PedirNumero(string mensaje)
         {
             double numero;
